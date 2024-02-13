@@ -2,6 +2,15 @@
   "name": "gan-hayot",
   "version": "0.1.0",
   "private": true,
+  "main": "electron-main.js",
+  "type": "module",
+    "build": {
+      "appId": "com.omersm.ganhayot",
+      "productName": "Gan Hayot",
+      "directories": {
+        "output": "dist"
+      }
+    },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -16,11 +25,13 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
+    
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron ."
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^28.2.2",
+    "electron-builder": "^24.9.1",
+    "electron-is-dev": "^3.0.1"
   }
 }
