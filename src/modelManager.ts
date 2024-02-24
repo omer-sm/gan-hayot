@@ -1,4 +1,5 @@
 import {DNA} from "./Containers/DnaInput"
+import { GenerationMode } from "./Components/GenerationModeSelect"
 
 export interface IModel {
     name: string,
@@ -12,8 +13,9 @@ const getModels = ():IModel[] => {
     {name: "TurtleMonkey", path: "", emoji: "🐢"}]
 }
 
-const getImageDna = async (path:string, model: IModel):Promise<DNA> => {
-    return [0.5, 0.5, 0.5, 0.5]
+const makeGenCommand = (model:IModel, mode:GenerationMode, dna1:DNA|string, dna2:DNA|string|null):string => {
+    return ":GEN|" + (mode === GenerationMode.Single ? "IMG|" : "GIF|") + 
+    model.path + "|" + dna1 + "|" + dna2 + ":"
 }
 
-export {getModels}
+export {getModels, makeGenCommand}

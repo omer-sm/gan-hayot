@@ -9,6 +9,11 @@ import { IModel } from "../modelManager"
 import Card from "@mui/joy/Card"
 import SetParametersContainer from "./SetParametersContainer"
 import {DNA} from './DnaInput';
+import { makeGenCommand } from "../modelManager"
+import { GenerationMode } from "../Components/GenerationModeSelect"
+import ResultsContainer from "./ResultsContainer"
+
+const { ipcRenderer } = window.require('electron');
 
 interface ICreationContainerProps {
     currentStep: number,
@@ -26,8 +31,19 @@ export default function CreationContainer({ currentStep, setCurrentStep, model, 
             setCurrentStep((x: number) => x-1)
         }
     }
+    const returnToFirstStage = () => {
+        setCurrentStep(0)
+    }
     const [dna1, setDna1] = React.useState<DNA | string>([0,0,0,0])
     const [dna2, setDna2] = React.useState<DNA | string>([0,0,0,0])
+    const [generationMode, setGenerationMode] = React.useState<GenerationMode>(GenerationMode.Single)
+    const generate = () => {
+        if (!model){
+            return
+        }
+        setCurrentStep(2)
+        ipcRenderer.send('call-py', makeGenCommand(model, generationMode, dna1, dna2));
+    }
     return (
         <Sheet variant="outlined"
             sx={{
@@ -49,10 +65,13 @@ export default function CreationContainer({ currentStep, setCurrentStep, model, 
                             color="primary">3</StepIndicator>
                     }>Results</Step>
                 </Stepper>
+                <button onClick={generate}>press</button>
                 <Card variant="outlined" sx={{ width: "70%", height: "85%" }}>
                     {[<ChooseModelContainer selectModel={selectModel} />,
                     <SetParametersContainer model={model} returnToPrevStage={returnToPrevStage}
-                    dna1={dna1} setDna1={setDna1} dna2={dna2} setDna2={setDna2}/>,
+                    dna1={dna1} setDna1={setDna1} dna2={dna2} setDna2={setDna2}
+                    generationMode={generationMode} setGenerationMode={setGenerationMode}/>,
+                    <ResultsContainer goToFirstStage={returnToFirstStage}/>
                     ]
                     [currentStep]}
                 </Card>

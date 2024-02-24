@@ -1,17 +1,16 @@
 // electron.js
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import isDev from 'electron-is-dev'
-import {r} from "./src/script.js"
-r()
-let mainWindow;
 
+let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false
     },
   });
 
@@ -23,6 +22,11 @@ function createWindow() {
 
   mainWindow.on('closed', () => (mainWindow = null));
 }
+ipcMain.on('call-py', (event, arg) => {
+  // Execute your function here
+  console.log(arg)
+});
+
 
 app.on('ready', createWindow);
 

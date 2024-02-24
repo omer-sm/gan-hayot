@@ -15,13 +15,14 @@ interface ISetParametersContainerProps {
     setDna1: Function,
     dna2: DNA | string,
     setDna2: Function,
+    generationMode: GenerationMode,
+    setGenerationMode: Function
 }
 
 export default function SetParametersContainer({ model, returnToPrevStage,
-    dna1, setDna1, dna2, setDna2 }: ISetParametersContainerProps) {
+    dna1, setDna1, dna2, setDna2, generationMode, setGenerationMode}: ISetParametersContainerProps) {
     const [isDna1Image, setIsDna1Image] = React.useState(false)
     const [isDna2Image, setIsDna2Image] = React.useState(false)
-    const [generationMode, setGenerationMode] = React.useState<GenerationMode>(GenerationMode.Single)
     return (
         <Stack justifyContent="space-between" height="100%">
             <div>
