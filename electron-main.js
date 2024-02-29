@@ -6,14 +6,15 @@ import isDev from 'electron-is-dev'
 let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1080,
+    height: 720,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      fullscreen: true,
     },
   });
-
+  mainWindow.removeMenu()
   const startURL = isDev
     ? 'http://localhost:3000'
     : `file://${join(__dirname, '../build/index.html')}`;
