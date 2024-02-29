@@ -48,7 +48,8 @@ export default function CreationContainer({ currentStep, setCurrentStep, model, 
         <Sheet variant="outlined"
             sx={{
                 height: "100%", width: "80%", borderWidth: "0.1em",
-                borderRadius: "5px 5px 0 0", borderBottom: 0, bgcolor: "var(--joy-palette-neutral-800)"
+                borderRadius: "5px 5px 0 0", borderBottom: 0, bgcolor: "var(--joy-palette-neutral-800)",
+                overflowY: "scroll", "::-webkit-scrollbar": {display: "none"}
             }}>
             <Stack alignItems="center" gap={2} pt={3} width="100%" height="100%">
                 <Stepper sx={{ width: "70%" }}>
@@ -65,12 +66,12 @@ export default function CreationContainer({ currentStep, setCurrentStep, model, 
                             color="primary">3</StepIndicator>
                     }>Results</Step>
                 </Stepper>
-                <button onClick={generate}>press</button>
                 <Card variant="outlined" sx={{ width: "70%", height: "85%" }}>
                     {[<ChooseModelContainer selectModel={selectModel} />,
                     <SetParametersContainer model={model} returnToPrevStage={returnToPrevStage}
                     dna1={dna1} setDna1={setDna1} dna2={dna2} setDna2={setDna2}
-                    generationMode={generationMode} setGenerationMode={setGenerationMode}/>,
+                    generationMode={generationMode} setGenerationMode={setGenerationMode}
+                    generate={generate}/>,
                     <ResultsContainer goToFirstStage={returnToFirstStage}/>
                     ]
                     [currentStep]}
