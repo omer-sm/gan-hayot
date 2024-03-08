@@ -13,10 +13,11 @@ interface IDnaInputProps {
     setValue: Function,
     isImage: boolean,
     setIsImage: Function,
+    isActive: boolean,
 }
 
 
-export default function DnaInput({value, setValue, isImage, setIsImage}: IDnaInputProps) {
+export default function DnaInput({value, setValue, isImage, setIsImage, isActive}: IDnaInputProps) {
     const setNumericValue = (val: number, index: number) => {
         setValue((prev: DNA) => {
             const newValue = [...prev]
@@ -28,14 +29,16 @@ export default function DnaInput({value, setValue, isImage, setIsImage}: IDnaInp
         <Card sx={{height: "20rem", width: "15rem"}}>
             <Typography level="title-md">Input DNA Parameters:</Typography>
             <Divider/>
-            <Typography component="label" endDecorator={<Switch checked={isImage} 
-            onChange={e => setIsImage(e.target.checked)}/> }>
+            <Typography component="label" endDecorator={<Switch disabled={!isActive} 
+            checked={isImage} onChange={e => setIsImage(e.target.checked)}/> }>
                 Use image?
             </Typography>
             <Divider/>
             {isImage ?
-            <ImageDnaInput value={typeof value === "string" ? value : ""} setValue={setValue} />:
-            <NumericDnaInput value={typeof value === "string" ? [0,0,0,0] : value} setValue={setNumericValue}/>}
+            <ImageDnaInput value={typeof value === "string" ? value : ""} 
+            setValue={setValue} isActive={isActive}/>:
+            <NumericDnaInput value={typeof value === "string" ? [0,0,0,0] : value} 
+            setValue={setNumericValue} isActive={isActive} />}
         </Card>
     )
 }

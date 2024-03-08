@@ -7,7 +7,8 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import Stack from "@mui/joy/Stack"
 import DnaInput, { DNA } from "./DnaInput"
 import GenerationModeSwitch, { GenerationMode } from "../Components/GenerationModeSelect"
-import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
+import DrawRoundedIcon from '@mui/icons-material/DrawRounded'
+import TransitionParamsInput from "../Components/TransitionParamsInput"
 
 interface ISetParametersContainerProps {
     model?: IModel,
@@ -18,11 +19,16 @@ interface ISetParametersContainerProps {
     setDna2: Function,
     generationMode: GenerationMode,
     setGenerationMode: Function,
-    generate: Function
+    generate: Function,
+    framerate: number,
+    setFramerate: Function,
+    frameCount: number,
+    setFrameCount: Function,
 }
 
 export default function SetParametersContainer({ model, returnToPrevStage,
-    dna1, setDna1, dna2, setDna2, generationMode, setGenerationMode, generate}: ISetParametersContainerProps) {
+    dna1, setDna1, dna2, setDna2, generationMode, setGenerationMode, generate, framerate,
+    setFramerate, frameCount, setFrameCount }: ISetParametersContainerProps) {
     const [isDna1Image, setIsDna1Image] = React.useState(false)
     const [isDna2Image, setIsDna2Image] = React.useState(false)
     return (
@@ -34,10 +40,14 @@ export default function SetParametersContainer({ model, returnToPrevStage,
                 <GenerationModeSwitch mode={generationMode} setMode={setGenerationMode} />
             </div>
             <Stack direction="row" gap={1} justifyContent="space-between">
-                <DnaInput value={dna1} setValue={setDna1} isImage={isDna1Image} setIsImage={setIsDna1Image} />
-                {generationMode === GenerationMode.Transition &&
-                <DnaInput value={dna2} setValue={setDna2} isImage={isDna2Image} setIsImage={setIsDna2Image} />}
-                <NavButton text="Generate!" icon={<DrawRoundedIcon/>} handleClick={generate}/>
+                <DnaInput isActive={true} value={dna1} setValue={setDna1} isImage={isDna1Image} setIsImage={setIsDna1Image} />
+                    <DnaInput isActive={generationMode === GenerationMode.Transition} value={dna2} setValue={setDna2} isImage={isDna2Image} setIsImage={setIsDna2Image} />
+                <Stack>
+                    <NavButton text="Generate!" icon={<DrawRoundedIcon />} handleClick={generate} />
+                    <TransitionParamsInput frameCount={frameCount} framerate={framerate} 
+                    isActive={generationMode === GenerationMode.Transition} setFrameCount={setFrameCount}
+                    setFramerate={setFramerate}/>
+                </Stack>
             </Stack>
             <div>
                 <Divider sx={{ borderWidth: "20px", my: 1 }} />

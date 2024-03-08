@@ -7,7 +7,7 @@ is_reading = False
 s = ""
 while sub_process.poll() is None:
     out = sub_process.stdout.read(1)
-    if out == ":":
+    if out == "?":
         if is_reading:
             print(s)
             s = ""

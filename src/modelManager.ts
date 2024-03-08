@@ -13,9 +13,10 @@ const getModels = ():IModel[] => {
     {name: "TurtleMonkey", path: "", emoji: "🐢"}]
 }
 
-const makeGenCommand = (model:IModel, mode:GenerationMode, dna1:DNA|string, dna2:DNA|string|null):string => {
-    return ":GEN|" + (mode === GenerationMode.Single ? "IMG|" : "GIF|") + 
-    model.path + "|" + dna1 + "|" + dna2 + ":"
+const makeGenCommand = (model:IModel, mode:GenerationMode, dna1:DNA|string,
+     dna2:DNA|string|null, framerate:number, frameCount:number):string => {
+    return "?GEN|" + (mode === GenerationMode.Single ? "IMG|" : "GIF|") + 
+    model.path + "|" + framerate + "|" + frameCount + "|" + dna1 + "|" + dna2 + "?"
 }
 
 export {getModels, makeGenCommand}

@@ -36,14 +36,17 @@ export default function CreationContainer({ currentStep, setCurrentStep, model, 
     }
     const [dna1, setDna1] = React.useState<DNA | string>([0,0,0,0])
     const [dna2, setDna2] = React.useState<DNA | string>([0,0,0,0])
+    const [framerate, setFramerate] = React.useState(3)
+    const [frameCount, setFrameCount] = React.useState(10)
     const [generationMode, setGenerationMode] = React.useState<GenerationMode>(GenerationMode.Single)
     const generate = () => {
         if (!model){
             return
         }
         setCurrentStep(2)
-        ipcRenderer.send('call-py', makeGenCommand(model, generationMode, dna1, dna2));
+        ipcRenderer.send('call-py', makeGenCommand(model, generationMode, dna1, dna2, framerate, frameCount));
     }
+
     return (
         <Sheet variant="outlined"
             sx={{
@@ -71,7 +74,8 @@ export default function CreationContainer({ currentStep, setCurrentStep, model, 
                     <SetParametersContainer model={model} returnToPrevStage={returnToPrevStage}
                     dna1={dna1} setDna1={setDna1} dna2={dna2} setDna2={setDna2}
                     generationMode={generationMode} setGenerationMode={setGenerationMode}
-                    generate={generate}/>,
+                    generate={generate} frameCount={frameCount} framerate={framerate}
+                    setFrameCount={setFrameCount} setFramerate={setFramerate}/>,
                     <ResultsContainer goToFirstStage={returnToFirstStage}/>
                     ]
                     [currentStep]}
