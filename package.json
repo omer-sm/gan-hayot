@@ -22,7 +22,6 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.80",
-    "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -56,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "^18.2.61",
     "electron": "^28.2.2",
     "electron-builder": "^24.9.1",
     "electron-is-dev": "^3.0.1"
