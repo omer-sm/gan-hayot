@@ -6,7 +6,7 @@ import Divider from "@mui/joy/Divider"
 import NumericDnaInput from "../Components/NumericDnaInput"
 import ImageDnaInput from "../Components/ImageDnaInput"
 
-export type DNA = [number, number, number, number]
+export type DNA = [number, number, number]
 
 interface IDnaInputProps {
     value: DNA | string,
@@ -37,7 +37,7 @@ export default function DnaInput({value, setValue, isImage, setIsImage, isActive
             {isImage ?
             <ImageDnaInput value={typeof value === "string" ? value : ""} 
             setValue={setValue} isActive={isActive}/>:
-            <NumericDnaInput value={typeof value === "string" ? [0,0,0,0] : value} 
+            <NumericDnaInput value={typeof value === "string" ? [0,0,0] : value} 
             setValue={setNumericValue} isActive={isActive} />}
         </Card>
     )

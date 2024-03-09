@@ -34,8 +34,8 @@ export default function CreationContainer({ currentStep, setCurrentStep, model, 
     const returnToFirstStage = () => {
         setCurrentStep(0)
     }
-    const [dna1, setDna1] = React.useState<DNA | string>([0,0,0,0])
-    const [dna2, setDna2] = React.useState<DNA | string>([0,0,0,0])
+    const [dna1, setDna1] = React.useState<DNA | string>([0,0,0])
+    const [dna2, setDna2] = React.useState<DNA | string>([0,0,0])
     const [framerate, setFramerate] = React.useState(3)
     const [frameCount, setFrameCount] = React.useState(10)
     const [generationMode, setGenerationMode] = React.useState<GenerationMode>(GenerationMode.Single)

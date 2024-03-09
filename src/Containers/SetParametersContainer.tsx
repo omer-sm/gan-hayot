@@ -42,11 +42,11 @@ export default function SetParametersContainer({ model, returnToPrevStage,
             <Stack direction="row" gap={1} justifyContent="space-between">
                 <DnaInput isActive={true} value={dna1} setValue={setDna1} isImage={isDna1Image} setIsImage={setIsDna1Image} />
                     <DnaInput isActive={generationMode === GenerationMode.Transition} value={dna2} setValue={setDna2} isImage={isDna2Image} setIsImage={setIsDna2Image} />
-                <Stack>
-                    <NavButton text="Generate!" icon={<DrawRoundedIcon />} handleClick={generate} />
+                <Stack gap={1}>
                     <TransitionParamsInput frameCount={frameCount} framerate={framerate} 
                     isActive={generationMode === GenerationMode.Transition} setFrameCount={setFrameCount}
                     setFramerate={setFramerate}/>
+                    <NavButton text="Generate!" icon={<DrawRoundedIcon />} handleClick={generate} />
                 </Stack>
             </Stack>
             <div>
