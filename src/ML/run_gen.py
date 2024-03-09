@@ -1,7 +1,7 @@
-from DL import *
+from ML.DL import *
 import sys
 from PIL import Image
-from make_input import *
+from ML.make_input import *
 import time
 import os
 

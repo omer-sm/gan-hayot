@@ -11,7 +11,6 @@ const makeModelsList = (lst: IModel[], selectModel: Function) => {
 }
 
 export default function ChooseModelContainer({ selectModel }: { selectModel: Function }) {
-
     return (
         <>
             <Typography level="title-lg">Choose Model:</Typography>

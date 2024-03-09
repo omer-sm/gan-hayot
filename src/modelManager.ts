@@ -1,5 +1,6 @@
 import {DNA} from "./Containers/DnaInput"
 import { GenerationMode } from "./Components/GenerationModeSelect"
+import models from "./Model Paths.json"
 
 export interface IModel {
     name: string,
@@ -8,9 +9,7 @@ export interface IModel {
 }
 
 const getModels = ():IModel[] => {
-    return [{name: "Cats", path: "", emoji: "🐱"},
-    {name: "Horses", path: "", emoji: "🐴"},
-    {name: "TurtleMonkey", path: "", emoji: "🐢"}]
+    return models.models
 }
 
 const makeGenCommand = (model:IModel, mode:GenerationMode, dna1:DNA|string,

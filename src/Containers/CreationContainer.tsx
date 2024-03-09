@@ -45,6 +45,8 @@ export default function CreationContainer({ currentStep, setCurrentStep, model, 
         }
         setCurrentStep(2)
         ipcRenderer.send('call-py', makeGenCommand(model, generationMode, dna1, dna2, framerate, frameCount));
+        setDna1([0,0,0])
+        setDna2([0,0,0])
     }
 
     return (

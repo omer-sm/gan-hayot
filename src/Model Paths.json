@@ -1,0 +1,14 @@
+{
+    "models": [
+        {
+            "path": "C:\\Users\\omerg\\source\\repos\\ai project\\ai project\\cats 300\\",
+            "name": "Cats",
+            "emoji": "🐱"
+        },
+        {
+            "path": "C:\\Users\\omerg\\source\\repos\\ai project\\ai project\\turtlemonkey 300\\",
+            "name": "TurtleMonkey",
+            "emoji": "🐢"
+        }
+    ]
+}
