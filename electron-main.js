@@ -14,7 +14,7 @@ function createWindow() {
       fullscreen: true,
     },
   });
-  mainWindow.removeMenu()
+  //mainWindow.removeMenu()
   const startURL = isDev
     ? 'http://localhost:3000'
     : `file://${join(__dirname, '../build/index.html')}`;

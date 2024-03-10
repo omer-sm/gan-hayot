@@ -15,7 +15,7 @@ interface IGenerationModeSelectProps {
 
 export default function GenerationModeSelect({mode, setMode, }: IGenerationModeSelectProps) {
     return (
-        <ToggleButtonGroup value={mode} onChange={(e, val) => setMode(val)}>
+        <ToggleButtonGroup value={mode} onChange={(e, val) => setMode(val || GenerationMode.Single)}>
             <Button value={GenerationMode.Single}>Single</Button>
             <Button value={GenerationMode.Transition}>Transition</Button>
         </ToggleButtonGroup>
